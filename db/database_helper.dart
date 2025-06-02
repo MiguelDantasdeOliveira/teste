@@ -37,4 +37,34 @@ class DatabaseHelper {
       )
     ''');
   }
+
+  Future<int> insertFilme(Filme filme) async {
+    final dbClient = await db;
+    return await dbClient.insert('filmes', filme.toMap());
+  }
+
+  Future<List<Filme>> getFilmes() async {
+    final dbClient = await db;
+    final maps = await dbClient.query('filmes');
+    return maps.map((map) => Filme.fromMap(map)).toList();
+  }
+
+  Future<int> updateFilme(Filme filme) async {
+    final dbClient = await db;
+    return await dbClient.update(
+      'filmes',
+      filme.toMap(),
+      where: 'id = ?',
+      whereArgs: [filme.id],
+    );
+  }
+
+  Future<int> deleteFilme(int id) async {
+    final dbClient = await db;
+    return await dbClient.delete(
+      'filmes',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
