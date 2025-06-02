@@ -34,4 +34,18 @@ class Filme {
       'ano': ano,
     };
   }
+
+  factory Filme.fromMap(Map<String, dynamic> map) {
+    return Filme(
+      id: map['id'],
+      titulo: map['titulo'],
+      urlImagem: map['urlImagem'],
+      genero: map['genero'],
+      faixaEtaria: map['faixaEtaria'],
+      duracao: map['duracao'],
+      pontuacao: map['pontuacao'],
+      descricao: map['descricao'],
+      ano: map['ano'],
+    );
+  }
 }
